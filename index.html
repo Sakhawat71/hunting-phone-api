@@ -12,34 +12,33 @@
 
 <body>
     <header>
-        
+
     </header>
 
     <main class="w-10/12 mx-auto ">
-        <!-- Search  -->
+        <!-- Search section-->
         <section class="text-center space-y-2 my-10">
             <h3 class="text-[30px] font-semibold text-[#100F0F]">Search your phone</h3>
             <div>
-                <input onkeydown="searchOnEnter(event)" id="search-field" type="text" placeholder="Search your phone" class="input input-ghost w-full max-w-xs md:max-w-md  bg-[#100F0F0D] " />
-            <button onclick="searchHandle()" class="btn btn-active hover:bg-[#0D6EFD] bg-[#0D6EFD] text-white">Search</button>
+                <input onkeydown="searchOnEnter(event)" id="search-field" type="text" placeholder="Search your phone"
+                    class="input input-ghost w-full max-w-xs md:max-w-md  bg-[#100F0F0D] " />
+                <button onclick="searchHandle()"
+                    class="btn btn-active hover:bg-[#0D6EFD] bg-[#0D6EFD] text-white">Search</button>
             </div>
+
         </section>
 
         <section>
+            <!-- show loader -->
+            <div id="loading-infinity-div" class="text-center hidden">
+                <span class="loading loading-infinity loading-lg"></span>
+            </div>
+            <!-- show 12 products -->
             <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-5">
-                <!-- <div class="">
-                    <figure class="px-10 pt-10 bg-[#0D6EFD0D]">
-                        <img src="" alt="Shoes" class="rounded-xl" />
-                    </figure>
-                    <div class="card-body items-center text-center text-[#403F3F] ">
-                        <h2 class="card-title font-bold text-[25px]">product name</h2>
-                        <p class="font-normal text-[18px] mt-2">product details : If a dog chews shoes whose shoes does he choose?</p>
-                        <h2 class="font-bold text-[25px]">$999</h2>
-                        <div class="card-actions">
-                            <button class="btn btn-primary bg-[#0D6EFD] text-white border-none font-semibold text-[16px]">Show Details</button>
-                        </div>
-                    </div>
-                </div> -->
+            </div>
+            <!-- show all button -->
+            <div id="show-all-container" class="mx-auto w-1/6 hidden">
+                <button class="btn btn-accent ">Show All</button>
             </div>
         </section>
     </main>
@@ -52,3 +51,17 @@
 </body>
 
 </html>
+
+<!-- <div class="">
+    <figure class="px-10 pt-10 bg-[#0D6EFD0D]">
+        <img src="" alt="Shoes" class="rounded-xl" />
+    </figure>
+    <div class="card-body items-center text-center text-[#403F3F] ">
+        <h2 class="card-title font-bold text-[25px]">product name</h2>
+        <p class="font-normal text-[18px] mt-2">product details : If a dog chews shoes whose shoes does he choose?</p>
+        <h2 class="font-bold text-[25px]">$999</h2>
+        <div class="card-actions">
+            <button class="btn btn-primary bg-[#0D6EFD] text-white border-none font-semibold text-[16px]">Show Details</button>
+        </div>
+    </div>
+</div> -->
