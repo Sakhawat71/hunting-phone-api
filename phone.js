@@ -1,25 +1,31 @@
-const loadData = async (searchText) => {
+// load Data form API
+const loadData = async (searchText,isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data;
-    displayPhones(phones);
+    displayPhones(phones,isShowAll);
 }
 
-const displayPhones = (phones) => {
-
+// display data 
+const displayPhones = (phones,isShowAll) => {
 
     const phoneContainer = document.getElementById("phone-container");
     phoneContainer.textContent = '';
     
     const showAll = document.getElementById("show-all-container");
-    if(phones.length > 12){
+    if(phones.length > 12 && !isShowAll){
         showAll.classList.remove("hidden");
     }
     else{
         showAll.classList.add("hidden");
     }
 
-    phones = phones.slice(0,12);
+    console.log("is show all ", isShowAll)
+    
+    if(!isShowAll){
+        phones = phones.slice(0,12);
+
+    }
 
     phones.forEach(phone => {
 
@@ -34,28 +40,50 @@ const displayPhones = (phones) => {
             <p class="font-normal text-[18px] mt-2"> ${phone.slug} </p>
             <h2 class="font-bold text-[25px]">${phone.brand}</h2>
             <div class="card-actions">
-                <button class="btn btn-primary bg-[#0D6EFD] text-white border-none font-semibold text-[16px]">Show Details</button>
+                <button onclick="showDetails('${phone.slug}')" class="btn btn-primary bg-[#0D6EFD] text-white border-none font-semibold text-[16px]">Show Details</button>
             </div>
         </div>
         `;
         phoneContainer.appendChild(phoneDiv)
     });
+
+    toggleLoading(false);
 }
 
-const searchHandle = () =>{
+// show details
+
+const showDetails = async (id) =>{
+
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${id}`)
+    const data = await res.json()
+
+    showPhoneDetails(data)
+}
+
+const showPhoneDetails = (phone) =>{
+    show_details_modal.showModal()
+    console.log(data)
+}
+
+
+// search data
+const searchHandle = (isShowAll) =>{
     toggleLoading(true)
     const searchField = document.getElementById("search-field");
     const searchText = searchField.value;
-    loadData(searchText);
-    searchField.value = '';
-    toggleLoading(false)
+    // searchField.value = '';
+    loadData(searchText,isShowAll);
+    
 }
+
+// 'Enter' button search 
 const searchOnEnter = (event) =>{
     if(event.key === 'Enter'){
         searchHandle();
     };
 }
 
+//  show loader 
 const toggleLoading = (isLoading) =>{
     const loadingDiv = document.getElementById("loading-infinity-div");
     if(isLoading){
@@ -66,4 +94,10 @@ const toggleLoading = (isLoading) =>{
     }
 }
 
-loadData()
+// shaw all products
+const handleShowAll = () =>{
+
+    searchHandle(true);
+}
+ 
+// loadData()
